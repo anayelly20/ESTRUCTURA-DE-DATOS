@@ -7,6 +7,7 @@ C:\Users\Offer PC\Desktop\Estructura de datos\semana02\obj\Debug\net9.0\semana02
 C:\Users\Offer PC\Desktop\Estructura de datos\semana02\obj\Debug\net9.0\semana02.AssemblyInfoInputs.cache
 C:\Users\Offer PC\Desktop\Estructura de datos\semana02\obj\Debug\net9.0\semana02.AssemblyInfo.cs
 C:\Users\Offer PC\Desktop\Estructura de datos\semana02\obj\Debug\net9.0\semana02.csproj.CoreCompileInputs.cache
+C:\Users\Offer PC\Desktop\Estructura de datos\semana02\obj\Debug\net9.0\semana02.sourcelink.json
 C:\Users\Offer PC\Desktop\Estructura de datos\semana02\obj\Debug\net9.0\semana02.dll
 C:\Users\Offer PC\Desktop\Estructura de datos\semana02\obj\Debug\net9.0\refint\semana02.dll
 C:\Users\Offer PC\Desktop\Estructura de datos\semana02\obj\Debug\net9.0\semana02.pdb
