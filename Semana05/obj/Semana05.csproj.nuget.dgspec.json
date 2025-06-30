@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Offer PC\\Desktop\\Estructura de datos\\semana03\\Semana03.csproj": {}
+    "C:\\Users\\Offer PC\\Desktop\\Estructura de datos\\Semana05\\Semana05.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Offer PC\\Desktop\\Estructura de datos\\semana03\\Semana03.csproj": {
+    "C:\\Users\\Offer PC\\Desktop\\Estructura de datos\\Semana05\\Semana05.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Offer PC\\Desktop\\Estructura de datos\\semana03\\Semana03.csproj",
-        "projectName": "Semana03",
-        "projectPath": "C:\\Users\\Offer PC\\Desktop\\Estructura de datos\\semana03\\Semana03.csproj",
+        "projectUniqueName": "C:\\Users\\Offer PC\\Desktop\\Estructura de datos\\Semana05\\Semana05.csproj",
+        "projectName": "Semana05",
+        "projectPath": "C:\\Users\\Offer PC\\Desktop\\Estructura de datos\\Semana05\\Semana05.csproj",
         "packagesPath": "C:\\Users\\Offer PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Offer PC\\Desktop\\Estructura de datos\\semana03\\obj\\",
+        "outputPath": "C:\\Users\\Offer PC\\Desktop\\Estructura de datos\\Semana05\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Offer PC\\AppData\\Roaming\\NuGet\\NuGet.Config"

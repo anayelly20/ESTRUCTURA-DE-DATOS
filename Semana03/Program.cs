@@ -9,9 +9,9 @@ class Program
         Estudiante estudiante1 = new Estudiante
         {
             Id = 1,
-            Nombres = "Eduardo",
-            Apellidos = "Chávez",
-            Direccion = "Calle Falsa 123",
+            Nombres = "Anayelly",
+            Apellidos = "Lopez",
+            Direccion = "Calle Quito 123",
             Telefonos = new string[] { "0991234567", "022123456", "0987654321" }
         };
 
