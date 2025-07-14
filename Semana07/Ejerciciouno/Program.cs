@@ -40,7 +40,7 @@ class BalanceoParentesis
         }
         else
         {
-            Console.WriteLine("Fórmula desbalanceada.");
+            Console.WriteLine("Fórmula desbalanceada .");
         }
     }
 }
