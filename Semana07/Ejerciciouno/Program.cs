@@ -1,85 +1,46 @@
 ﻿using System;
 using System.Collections.Generic;
 
-class TorresDeHanoi
+class BalanceoParentesis
 {
-    static void MostrarEstado(Stack<int> torreA, Stack<int> torreB, Stack<int> torreC)
+    static bool EstaBalanceado(string expresion)
     {
-        Console.WriteLine("\nEstado actual de las torres:");
-        ImprimirTorre("Torre A", torreA);
-        ImprimirTorre("Torre B", torreB);
-        ImprimirTorre("Torre C", torreC);
-        Console.WriteLine("-----------------------------");
-    }
+        Stack<char> pila = new Stack<char>();
 
-    static void ImprimirTorre(string nombre, Stack<int> torre)
-    {
-        Console.Write($"{nombre}: ");
-        foreach (var disco in torre)
+        foreach (char c in expresion)
         {
-            Console.Write(disco + " ");
-        }
-        Console.WriteLine();
-    }
+            if (c == '(' || c == '{' || c == '[')
+            {
+                pila.Push(c);
+            }
+            else if (c == ')' || c == '}' || c == ']')
+            {
+                if (pila.Count == 0)
+                    return false;
 
-    static void MoverDiscos(
-        int n,
-        Stack<int> origen,
-        Stack<int> destino,
-        Stack<int> auxiliar,
-        string nombreOrigen,
-        string nombreDestino,
-        string nombreAuxiliar,
-        Stack<int> torreA,
-        Stack<int> torreB,
-        Stack<int> torreC)
-    {
-        if (n == 1)
-        {
-            int disco = origen.Pop();
-            destino.Push(disco);
-            Console.WriteLine($"Mover disco {disco} de {nombreOrigen} a {nombreDestino}");
-            MostrarEstado(torreA, torreB, torreC);
-            return;
+                char tope = pila.Pop();
+                if ((c == ')' && tope != '(') ||
+                    (c == '}' && tope != '{') ||
+                    (c == ']' && tope != '['))
+                    return false;
+            }
         }
 
-        MoverDiscos(n - 1, origen, auxiliar, destino, nombreOrigen, nombreAuxiliar, nombreDestino,
-                    torreA, torreB, torreC);
-
-        int discoMovido = origen.Pop();
-        destino.Push(discoMovido);
-        Console.WriteLine($"Mover disco {discoMovido} de {nombreOrigen} a {nombreDestino}");
-        MostrarEstado(torreA, torreB, torreC);
-
-        MoverDiscos(n - 1, auxiliar, destino, origen, nombreAuxiliar, nombreDestino, nombreOrigen,
-                    torreA, torreB, torreC);
+        return pila.Count == 0;
     }
 
     static void Main()
     {
-        Console.Write("Ingrese el número de discos: ");
-        if (!int.TryParse(Console.ReadLine(), out int n) || n < 1)
+        Console.WriteLine("Ingrese una expresión matemática:");
+        string entrada = Console.ReadLine();
+
+        if (EstaBalanceado(entrada))
         {
-            Console.WriteLine("Número inválido. Intente con un número mayor o igual a 1.");
-            return;
+            Console.WriteLine("Fórmula balanceada.");
         }
-
-        Stack<int> torreA = new Stack<int>();
-        Stack<int> torreB = new Stack<int>();
-        Stack<int> torreC = new Stack<int>();
-
-        for (int i = n; i >= 1; i--)
+        else
         {
-            torreA.Push(i);
+            Console.WriteLine("Fórmula desbalanceada.");
         }
-
-        Console.WriteLine($"\nResolviendo Torres de Hanoi con {n} discos:\n");
-        MostrarEstado(torreA, torreB, torreC);
-
-        MoverDiscos(n, torreA, torreC, torreB, "Torre A", "Torre C", "Torre B",
-                    torreA, torreB, torreC);
-
-        Console.WriteLine("\n¡Problema resuelto!");
     }
 }
-
