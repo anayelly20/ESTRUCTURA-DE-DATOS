@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Offer PC\\Desktop\\Estructura de datos\\Semana07\\Ejerciciouno\\Ejerciciouno.csproj",
-      "projectName": "Ejerciciouno",
-      "projectPath": "C:\\Users\\Offer PC\\Desktop\\Estructura de datos\\Semana07\\Ejerciciouno\\Ejerciciouno.csproj",
+      "projectUniqueName": "C:\\Users\\Offer PC\\Desktop\\Estructura de datos\\Semana08\\Semana08.csproj",
+      "projectName": "Semana08",
+      "projectPath": "C:\\Users\\Offer PC\\Desktop\\Estructura de datos\\Semana08\\Semana08.csproj",
       "packagesPath": "C:\\Users\\Offer PC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Offer PC\\Desktop\\Estructura de datos\\Semana07\\Ejerciciouno\\obj\\",
+      "outputPath": "C:\\Users\\Offer PC\\Desktop\\Estructura de datos\\Semana08\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Offer PC\\AppData\\Roaming\\NuGet\\NuGet.Config"
