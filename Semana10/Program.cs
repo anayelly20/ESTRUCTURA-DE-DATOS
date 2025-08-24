@@ -6,99 +6,59 @@ class Program
 {
     static void Main()
     {
-        // =========================================================================
-        // 1. Crear conjunto de 500 ciudadanos
-        // =========================================================================
         Console.WriteLine("Generando datos de la campaña de vacunación...\n");
         
+        // 1. Crear conjunto de 500 ciudadanos
         HashSet<string> conjuntoU = new HashSet<string>();
         for (int i = 1; i <= 500; i++)
         {
             conjuntoU.Add("Ciudadano " + i);
         }
 
-        // =========================================================================
-        // 2. Crear conjunto ficticio de 75 vacunados con Pfizer
-        // =========================================================================
-        HashSet<string> conjuntoA = GenerarVacunados(conjuntoU, 75, 1);
+        // 2. Crear conjuntos ficticios de vacunados
+        HashSet<string> conjuntoA = GenerarVacunados(conjuntoU, 75, 1); // Pfizer
+        HashSet<string> conjuntoB = GenerarVacunados(conjuntoU, 75, 2); // AstraZeneca
 
-        // =========================================================================
-        // 3. Crear conjunto ficticio de 75 vacunados con AstraZeneca
-        // =========================================================================
-        HashSet<string> conjuntoB = GenerarVacunados(conjuntoU, 75, 2);
+        // 3. Operaciones de conjuntos
+        var vacunados = new HashSet<string>(conjuntoA);
+        vacunados.UnionWith(conjuntoB);                     // A ∪ B
 
-        // =========================================================================
-        // 4. Operaciones de conjuntos
-        // =========================================================================
-        
-        // vacunados = (A ∪ B)
-        var vacunados = new HashSet<string>(conjuntoA);     // copia de A
-        vacunados.UnionWith(conjuntoB);                     // ahora A ∪ B
-
-        // no vacunados = U - vacunados
-        var noVacunados = new HashSet<string>(conjuntoU);   // copia de U
+        var noVacunados = new HashSet<string>(conjuntoU);
         noVacunados.ExceptWith(vacunados);                  // U - vacunados
 
-        // ambas dosis = A ∩ B
-        var ambasDosis = new HashSet<string>(conjuntoA);    // copia de A 
-        ambasDosis.IntersectWith(conjuntoB);
+        var ambasDosis = new HashSet<string>(conjuntoA);
+        ambasDosis.IntersectWith(conjuntoB);                // A ∩ B
 
-        // solo Pfizer = A - B
-        var soloPfizer = new HashSet<string>(conjuntoA);    // copia de A 
-        soloPfizer.ExceptWith(conjuntoB);
+        var soloPfizer = new HashSet<string>(conjuntoA);
+        soloPfizer.ExceptWith(conjuntoB);                   // A - B
 
-        // solo AstraZeneca = B - A
-        var soloAstra = new HashSet<string>(conjuntoB);     // copia de B
-        soloAstra.ExceptWith(conjuntoA);
+        var soloAstra = new HashSet<string>(conjuntoB);
+        soloAstra.ExceptWith(conjuntoA);                    // B - A
 
-        // =========================================================================
-        // 5. Resultados - Resumen Estadístico
-        // =========================================================================
+        // 4. Mostrar resultados
         Console.WriteLine("=== CAMPAÑA DE VACUNACIÓN COVID-19 ===");
-        Console.WriteLine("=====================================");
         Console.WriteLine($"Total ciudadanos: {conjuntoU.Count}");
         Console.WriteLine($"Vacunados con Pfizer: {conjuntoA.Count}");
         Console.WriteLine($"Vacunados con AstraZeneca: {conjuntoB.Count}");
         Console.WriteLine($"Total vacunados: {vacunados.Count}");
-        Console.WriteLine("=====================================");
-        Console.WriteLine($"1. No vacunados: {noVacunados.Count}");
-        Console.WriteLine($"2. Ambas dosis (Pfizer + AstraZeneca): {ambasDosis.Count}");
-        Console.WriteLine($"3. Solo Pfizer: {soloPfizer.Count}");
-        Console.WriteLine($"4. Solo AstraZeneca: {soloAstra.Count}");
-        Console.WriteLine("=====================================");
-
-        // =========================================================================
-        // 6. Verificación matemática
-        // =========================================================================
-        Console.WriteLine("\n=== VERIFICACIÓN MATEMÁTICA ===");
-        Console.WriteLine($"Pfizer únicamente: {soloPfizer.Count}");
-        Console.WriteLine($"AstraZeneca únicamente: {soloAstra.Count}");
-        Console.WriteLine($"Ambas vacunas: {ambasDosis.Count}");
-        Console.WriteLine($"Total vacunados calculado: {soloPfizer.Count + soloAstra.Count + ambasDosis.Count}");
-        Console.WriteLine($"Total vacunados real: {vacunados.Count}");
         Console.WriteLine($"No vacunados: {noVacunados.Count}");
-        Console.WriteLine($"Total ciudadanos: {noVacunados.Count + vacunados.Count}");
+        Console.WriteLine($"Ambas dosis: {ambasDosis.Count}");
+        Console.WriteLine($"Solo Pfizer: {soloPfizer.Count}");
+        Console.WriteLine($"Solo AstraZeneca: {soloAstra.Count}");
 
-        // =========================================================================
-        // 7. Mostrar listados detallados (opcional)
-        // =========================================================================
-        Console.WriteLine("\n¿Desea ver los listados detallados? (s/n): ");
-        var respuesta = Console.ReadLine()?.ToLower();
-        
-        if (respuesta == "s" || respuesta == "si" || respuesta == "sí")
-        {
-            MostrarListadosDetallados(noVacunados, ambasDosis, soloPfizer, soloAstra);
-        }
+        // 5. Verificación matemática
+        Console.WriteLine("\n=== VERIFICACIÓN ===");
+        Console.WriteLine($"Total calculado: {soloPfizer.Count + soloAstra.Count + ambasDosis.Count}");
+        Console.WriteLine($"Total real: {vacunados.Count}");
 
         Console.WriteLine("\nPresione cualquier tecla para salir...");
         Console.ReadKey();
     }
 
-    // Método mejorado para generar ciudadanos vacunados de manera aleatoria
     static HashSet<string> GenerarVacunados(HashSet<string> poblacionTotal, int cantidad, int seed)
     {
         HashSet<string> conjunto = new HashSet<string>();
-        Random random = new Random(seed * DateTime.Now.Millisecond); // Semilla diferente para cada vacuna
+        Random random = new Random(seed * DateTime.Now.Millisecond);
         List<string> listaPoblacion = poblacionTotal.ToList();
 
         while (conjunto.Count < cantidad)
@@ -107,46 +67,5 @@ class Program
             conjunto.Add(listaPoblacion[indice]);
         }
         return conjunto;
-    }
-
-    // Método para mostrar listados detallados
-    static void MostrarListadosDetallados(HashSet<string> noVacunados, HashSet<string> ambasDosis, 
-                                        HashSet<string> soloPfizer, HashSet<string> soloAstra)
-    {
-        Console.WriteLine("\n=== LISTADOS DETALLADOS ===");
-        
-        Console.WriteLine($"\n-- 1. CIUDADANOS NO VACUNADOS ({noVacunados.Count}) --");
-        var noVacunadosOrdenados = noVacunados.OrderBy(x => int.Parse(x.Replace("Ciudadano ", ""))).Take(20);
-        foreach (var ciudadano in noVacunadosOrdenados)
-        {
-            Console.WriteLine($"  • {ciudadano}");
-        }
-        if (noVacunados.Count > 20)
-            Console.WriteLine($"  ... y {noVacunados.Count - 20} más");
-
-        Console.WriteLine($"\n-- 2. CIUDADANOS CON AMBAS DOSIS ({ambasDosis.Count}) --");
-        var ambasOrdenados = ambasDosis.OrderBy(x => int.Parse(x.Replace("Ciudadano ", "")));
-        foreach (var ciudadano in ambasOrdenados)
-        {
-            Console.WriteLine($"  • {ciudadano} (Pfizer + AstraZeneca)");
-        }
-
-        Console.WriteLine($"\n-- 3. CIUDADANOS SOLO CON PFIZER ({soloPfizer.Count}) --");
-        var pfizerOrdenados = soloPfizer.OrderBy(x => int.Parse(x.Replace("Ciudadano ", ""))).Take(15);
-        foreach (var ciudadano in pfizerOrdenados)
-        {
-            Console.WriteLine($"  • {ciudadano}");
-        }
-        if (soloPfizer.Count > 15)
-            Console.WriteLine($"  ... y {soloPfizer.Count - 15} más");
-
-        Console.WriteLine($"\n-- 4. CIUDADANOS SOLO CON ASTRAZENECA ({soloAstra.Count}) --");
-        var astraOrdenados = soloAstra.OrderBy(x => int.Parse(x.Replace("Ciudadano ", ""))).Take(15);
-        foreach (var ciudadano in astraOrdenados)
-        {
-            Console.WriteLine($"  • {ciudadano}");
-        }
-        if (soloAstra.Count > 15)
-            Console.WriteLine($"  ... y {soloAstra.Count - 15} más");
     }
 }
