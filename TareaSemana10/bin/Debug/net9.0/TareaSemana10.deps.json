@@ -6,15 +6,15 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v9.0": {
-      "Semana10/1.0.0": {
+      "TareaSemana10/1.0.0": {
         "runtime": {
-          "Semana10.dll": {}
+          "TareaSemana10.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "Semana10/1.0.0": {
+    "TareaSemana10/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
