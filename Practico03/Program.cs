@@ -47,7 +47,10 @@ namespace TorneoFutbol
             var jugador = new Jugador(id, nombre, posicion, edad, numeroCamiseta, equipoId);
             jugadores[id] = jugador; numerosCamiseta.Add(numeroCamiseta);
             jugadoresPorEquipo[equipoId].Add(id);
-            (jugadoresPorPosicion[posicion] ??= new()).Add(id);
+
+            if (!jugadoresPorPosicion.ContainsKey(posicion))
+                jugadoresPorPosicion[posicion] = new HashSet<int>();
+            jugadoresPorPosicion[posicion].Add(id);
 
             Console.WriteLine($"✅ Jugador {nombre} registrado (ID {id}).");
             return true;
@@ -110,8 +113,8 @@ namespace TorneoFutbol
             Console.Write("Nombre: "); string nombre = Console.ReadLine();
             Console.Write("Ciudad: "); string ciudad = Console.ReadLine();
             Console.Write("Entrenador: "); string entrenador = Console.ReadLine();
-            Console.Write("Año fundación: "); int.TryParse(Console.ReadLine(), out int año);
-            sistema.RegistrarEquipo(id, nombre, ciudad, entrenador, new DateTime(año, 1, 1));
+            Console.Write("Año fundación: "); int.TryParse(Console.ReadLine(), out int anio);
+            sistema.RegistrarEquipo(id, nombre, ciudad, entrenador, new DateTime(anio, 1, 1));
         }
 
         static void RegistrarJugador()
@@ -123,6 +126,13 @@ namespace TorneoFutbol
             Console.Write("Posición (1-Portero,2-Defensa,3-Centrocampista,4-Delantero): ");
             string[] pos = { "Portero", "Defensa", "Centrocampista", "Delantero" };
             int.TryParse(Console.ReadLine(), out int p);
+
+            if (p < 1 || p > pos.Length)
+            {
+                Console.WriteLine("❌ Opción inválida de posición."); 
+                return;
+            }
+
             Console.Write("Edad: "); int.TryParse(Console.ReadLine(), out int edad);
             Console.Write("N° Camiseta: "); int.TryParse(Console.ReadLine(), out int num);
             Console.WriteLine("Equipos: " + string.Join(", ", equipos));
