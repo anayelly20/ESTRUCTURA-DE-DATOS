@@ -51,7 +51,7 @@ namespace BusquedaVuelos
                     case "6": var v = bd.MasBarato(); Console.WriteLine("\n💰 MÁS BARATO\n════════════════════════════════════════"); Console.WriteLine(v != null ? $"✓ {v}" : "No hay vuelos"); break;
                     case "7": Mostrar("\n✈️  ORDENADOS POR PRECIO", bd.Ordenados()); break;
                     case "8": continuar = false; Console.WriteLine("\n¡Gracias por usar el sistema!"); break;
-                    default: Console.WriteLine("\n❌ Opción no válida"); break;
+                    default: Console.WriteLine("\n Opción no válida"); break;
                 }
                 if (continuar) { Console.WriteLine("\nPresione cualquier tecla..."); Console.ReadKey(); Console.Clear(); }
             }
